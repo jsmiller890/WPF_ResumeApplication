@@ -26,7 +26,18 @@ namespace WPF_ResumeApplication
             
         }
 
-        
+        public string[] GetSongInfo()
+        {
+
+            string title = titleTxtBox.Text;
+            string album = albumTxtBox.Text;
+            string artist = artistTxtBox.Text;
+            string genre = genreTxtBox.Text;
+            string time = timeTxtBox.Text;
+
+            string[] s = new string[5] { title, album, artist, genre, time };
+            return s;
+        }
         
     }
 

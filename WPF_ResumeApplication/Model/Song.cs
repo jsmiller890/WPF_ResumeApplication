@@ -24,7 +24,7 @@ namespace WPF_ResumeApplication.Model
             set
             {
                 _title = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged("Title");
             }
         }
 

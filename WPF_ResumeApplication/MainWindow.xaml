@@ -30,11 +30,12 @@
         </ListView>
         <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="504,374,0,0" VerticalAlignment="Top" Width="75" Command = "{Binding SaveCommand}"/>
         <Button x:Name="loadButton" Content="Load" HorizontalAlignment="Left" Margin="701,374,0,0" VerticalAlignment="Top" Width="75" Command = "{Binding LoadCommand}"/>
-        <TextBox x:Name="titleTxtBox" HorizontalAlignment="Left" Height="23" Margin="656,97,0,0" TextWrapping="Wrap" Text="{Binding ElementName=songGrid,Path=SelectedItem.Title}" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="artistTxtBox" HorizontalAlignment="Left" Height="23" Margin="656,146,0,0" TextWrapping="Wrap" Text="{Binding ElementName=songGrid,Path=SelectedItem.Artist}" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="albumTxtBox" HorizontalAlignment="Left" Height="23" Margin="656,192,0,0" TextWrapping="Wrap" Text="{Binding ElementName=songGrid,Path=SelectedItem.Album}" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="genreTxtBox" HorizontalAlignment="Left" Height="23" Margin="656,235,0,0" TextWrapping="Wrap" Text="{Binding ElementName=songGrid,Path=SelectedItem.Genre}" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="timeTxtBox" HorizontalAlignment="Left" Height="23" Margin="656,280,0,0" TextWrapping="Wrap" Text="{Binding ElementName=songGrid,Path=SelectedItem.Time}" VerticalAlignment="Top" Width="120"/>
+        
+        <TextBox x:Name="titleTxtBox" HorizontalAlignment="Left" Height="23" Margin="656,97,0,0" TextWrapping="Wrap"  Text="{Binding ElementName=songGrid,Path=SelectedItem.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="artistTxtBox" HorizontalAlignment="Left" Height="23" Margin="656,146,0,0" TextWrapping="Wrap" Text="{Binding ElementName=songGrid,Path=SelectedItem.Artist, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="albumTxtBox" HorizontalAlignment="Left" Height="23" Margin="656,192,0,0" TextWrapping="Wrap" Text="{Binding ElementName=songGrid,Path=SelectedItem.Album, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="genreTxtBox" HorizontalAlignment="Left" Height="23" Margin="656,235,0,0" TextWrapping="Wrap" Text="{Binding ElementName=songGrid,Path=SelectedItem.Genre, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="timeTxtBox" HorizontalAlignment="Left" Height="23" Margin="656,280,0,0" TextWrapping="Wrap" Text="{Binding ElementName=songGrid,Path=SelectedItem.Time, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <Label Content="Title" HorizontalAlignment="Left" Margin="560,97,0,0" VerticalAlignment="Top"/>
         <Label Content="Artist" HorizontalAlignment="Left" Margin="560,143,0,0" VerticalAlignment="Top"/>
         <Label Content="Album" HorizontalAlignment="Left" Margin="560,189,0,0" VerticalAlignment="Top"/>
@@ -42,5 +43,6 @@
         <Label Content="Time" HorizontalAlignment="Left" Margin="560,277,0,0" VerticalAlignment="Top"/>
         <Button x:Name="updateButton" Content="Update" HorizontalAlignment="Left" Margin="605,374,0,0" VerticalAlignment="Top" Width="75" Command = "{Binding UpdateCommand}"/>
         <Button x:Name="deleteButton" Content="Delete" HorizontalAlignment="Left" Margin="701,332,0,0" VerticalAlignment="Top" Width="75" Command = "{Binding DeleteCommand}"/>
+        <Button x:Name="addButton" Content="Add" HorizontalAlignment="Left" Margin="605,332,0,0" VerticalAlignment="Top" Width="75" Command = "{Binding AddCommand}"/>
     </Grid>
 </Window>

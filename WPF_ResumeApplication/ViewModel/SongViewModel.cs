@@ -14,10 +14,14 @@ namespace WPF_ResumeApplication.ViewModel
 {
     class SongViewModel
     {
+        MainWindow w;
+
         private IList<Song> _SongsList;
 
-        public SongViewModel()
+        public SongViewModel(MainWindow w)
         {
+            this.w = w;
+
             _SongsList = new List<Song>
             {
                 
@@ -126,6 +130,7 @@ namespace WPF_ResumeApplication.ViewModel
             }
 
         }
+
         private class Loader : ICommand
         {
             private SongViewModel songViewModel;
@@ -150,46 +155,9 @@ namespace WPF_ResumeApplication.ViewModel
             #endregion
         }
 
-        private ICommand mDeleter;
-        public ICommand DeleteCommand
-        {
-            get
-            {
-                if (mDeleter == null)
-                    mDeleter = new Deleter(this);
-                return mDeleter;
-            }
+        
 
-            set
-            {
-                mDeleter = value;
-            }
-
-        }
-        private class Deleter : ICommand
-        {
-            private SongViewModel songViewModel;
-            public Deleter(SongViewModel vm)
-            {
-                songViewModel = vm;
-            }
-            #region
-            public bool CanExecute(object parameter)
-            {
-                return true;
-            }
-
-            public event EventHandler CanExecuteChanged;
-
-            public void Execute(object parameter)
-            {
-                songViewModel.DeleteEntry();
-
-            }
-
-            #endregion
-        }
-
+        //Saves the data in listview to a txt file
         public void SaveData()
         {
             string splitter = "|";
@@ -248,11 +216,99 @@ namespace WPF_ResumeApplication.ViewModel
             view.Refresh();
         }
 
+        /*
+         * Adds an entry into the Songs list and displays it in the listview
+        */
+        private ICommand mAdder;
+        public ICommand AddCommand
+        {
+            get
+            {
+                if (mAdder == null)
+                    mAdder = new Adder(this);
+                return mAdder;
+            }
+
+            set
+            {
+                mAdder = value;
+            }
+
+        }
+        private class Adder : ICommand
+        {
+            private SongViewModel songViewModel;
+            public Adder(SongViewModel vm)
+            {
+                songViewModel = vm;
+            }
+            #region
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+
+            public event EventHandler CanExecuteChanged;
+
+            public void Execute(object parameter)
+            {
+                songViewModel.AddEntry();
+
+            }
+
+            #endregion
+        }
         public void AddEntry()
         {
-            _SongsList.Add(new Song { Title = , Album = dividedContents[1], Artist = dividedContents[2], Genre = dividedContents[3], Time = dividedContents[4]});
+            _SongsList.Add(new Song{ Title = w.titleTxtBox.Text, Album = w.albumTxtBox.Text, Artist = w.artistTxtBox.Text, Genre = w.genreTxtBox.Text, Time = w.timeTxtBox.Text });
+            UpdateData();
         }
+        /*
+         * End of song adding logic
+         */
 
+        /*
+         * Deletes the selected entry in the listview
+         */ 
+        private ICommand mDeleter;
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                if (mDeleter == null)
+                    mDeleter = new Deleter(this);
+                return mDeleter;
+            }
+
+            set
+            {
+                mDeleter = value;
+            }
+
+        }
+        private class Deleter : ICommand
+        {
+            private SongViewModel songViewModel;
+            public Deleter(SongViewModel vm)
+            {
+                songViewModel = vm;
+            }
+            #region
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+
+            public event EventHandler CanExecuteChanged;
+
+            public void Execute(object parameter)
+            {
+                songViewModel.DeleteEntry();
+
+            }
+
+            #endregion
+        }
         public void DeleteEntry()
         {
             ICollectionView view = CollectionViewSource.GetDefaultView(_SongsList);
@@ -265,5 +321,9 @@ namespace WPF_ResumeApplication.ViewModel
             _SongsList.Remove((Song)toBeDeleted);
             view.Refresh();
         }
+
+        /*
+         * End of delete entry logic
+         */
     }
 }
