@@ -19,8 +19,8 @@ namespace WPF_ResumeApplication
         {
             base.OnStartup(e);
             WPF_ResumeApplication.MainWindow window = new MainWindow();
-            SongViewModel VM = new SongViewModel(window);
-            window.DataContext = VM;
+            MainViewModel mvm = new MainViewModel();
+            window.DataContext = mvm;
             window.Show();
         }
     }

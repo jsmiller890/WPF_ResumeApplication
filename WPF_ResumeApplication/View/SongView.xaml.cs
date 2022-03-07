@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_ResumeApplication.ViewModel;
 
 namespace WPF_ResumeApplication.View
 {
@@ -22,6 +23,7 @@ namespace WPF_ResumeApplication.View
         public SongView()
         {
             InitializeComponent();
+            SongViewModel SVM = new SongViewModel(this);
         }
     }
 }
