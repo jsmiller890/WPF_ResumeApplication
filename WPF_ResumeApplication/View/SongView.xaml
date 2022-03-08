@@ -10,21 +10,21 @@
     <ListView x:Name="songGrid" HorizontalAlignment="Left" Height="274" Margin="45,52,0,0" VerticalAlignment="Top" Width="472" ItemsSource="{Binding Songs}" IsSynchronizedWithCurrentItem="False">
         <ListView.View>
             <GridView x:Name="SongGrid">
-                <GridViewColumn Header="Title"
-                                    DisplayMemberBinding="{Binding Title}"
-                                    Width="100"/>
-                <GridViewColumn Header="Artist"
-                                    DisplayMemberBinding="{Binding Artist}"
-                                    Width="80"/>
-                <GridViewColumn Header="Album"
-                                    DisplayMemberBinding="{Binding Album}"
-                                    Width="100"/>
-                <GridViewColumn Header="Time"
-                                    DisplayMemberBinding="{Binding Time}"
-                                    Width="80"/>
-                <GridViewColumn Header="Genre"
-                                    DisplayMemberBinding="{Binding Genre}"
-                                    Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Title}" Width="100">
+                        <GridViewColumnHeader Tag="Title" Click="lvColumnHeader_Click">Title</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Artist}" Width="80">
+                        <GridViewColumnHeader Tag="Artist" Click="lvColumnHeader_Click">Artist</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Album}" Width="100">
+                        <GridViewColumnHeader Tag="Album" Click="lvColumnHeader_Click">Album</GridViewColumnHeader>
+                    </GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Time}" Width="80">
+                        <GridViewColumnHeader Tag="Time" Click="lvColumnHeader_Click">Time</GridViewColumnHeader>
+                    </GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Genre}" Width="100">
+                        <GridViewColumnHeader Tag="Genre" Click="lvColumnHeader_Click">Genre</GridViewColumnHeader>
+                    </GridViewColumn>
             </GridView>
         </ListView.View>
     </ListView>

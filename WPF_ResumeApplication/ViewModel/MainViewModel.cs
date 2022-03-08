@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WPF_ResumeApplication.View;
 
@@ -14,18 +10,18 @@ namespace WPF_ResumeApplication.ViewModel
         {
 
         }
-        private ICommand mOpenSongView;
-        public ICommand OpenSongViewCommand
+        private ICommand mOpenNewView;
+        public ICommand OpenNewViewCommand
         {
             get
             {
-                if (mOpenSongView == null)
-                    mOpenSongView = new Opener(this);
-                return mOpenSongView;
+                if (mOpenNewView == null)
+                    mOpenNewView = new Opener(this);
+                return mOpenNewView;
             }
             set
             {
-                mOpenSongView = value;
+                mOpenNewView = value;
             }
         }
 
@@ -46,46 +42,15 @@ namespace WPF_ResumeApplication.ViewModel
 
             public void Execute(object parameter)
             {
-                mainViewModel.OpenSongView();
-                
-            }
+                if ((string)parameter == "SongList")
+                {
+                    mainViewModel.OpenSongView();
+                }
+                else if ((string)parameter == "Generic")
+                {
+                    mainViewModel.OpenGenericView();
+                }
 
-            #endregion
-        }
-
-        private ICommand mOpenGenericView;
-        public ICommand OpenGenericViewCommand
-        {
-            get
-            {
-                if (mOpenSongView == null)
-                    mOpenSongView = new Opener(this);
-                return mOpenSongView;
-            }
-            set
-            {
-                mOpenSongView = value;
-            }
-        }
-
-        private class GenericOpener : ICommand
-        {
-            private MainViewModel mainViewModel;
-            public GenericOpener(MainViewModel mvm)
-            {
-                mainViewModel = mvm;
-            }
-            #region
-            public bool CanExecute(object parameter)
-            {
-                return true;
-            }
-
-            public event EventHandler CanExecuteChanged;
-
-            public void Execute(object parameter)
-            {
-                mainViewModel.OpenSongView();
 
             }
 
@@ -102,7 +67,10 @@ namespace WPF_ResumeApplication.ViewModel
 
         public void OpenGenericView()
         {
-            
+            GenericView genericView = new GenericView();
+            GenericViewModel gvm = new GenericViewModel(genericView);
+            genericView.DataContext = gvm;
+            genericView.ShowDialog();
         }
     }
 }

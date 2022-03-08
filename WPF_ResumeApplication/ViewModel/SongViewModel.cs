@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using System.ComponentModel;
-using WPF_ResumeApplication.Model;
 using System.IO;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
+using WPF_ResumeApplication.Model;
 using WPF_ResumeApplication.View;
 
 namespace WPF_ResumeApplication.ViewModel
@@ -25,7 +22,7 @@ namespace WPF_ResumeApplication.ViewModel
 
             _SongsList = new List<Song>
             {
-                
+
             };
             LoadData();
         }
@@ -113,7 +110,7 @@ namespace WPF_ResumeApplication.ViewModel
             public void Execute(object parameter)
             {
                 songViewModel.LoadData();
-                
+
             }
 
             #endregion
@@ -274,7 +271,7 @@ namespace WPF_ResumeApplication.ViewModel
             char splitter = '|';
             string filename = "SongList.txt";
             string fileContents = "";
-            
+
             if (!File.Exists(filename))
                 MessageBox.Show("The file " + filename + "does not exist.");
 
@@ -287,11 +284,11 @@ namespace WPF_ResumeApplication.ViewModel
                 {
                     string[] dividedContents = fileContents.Split(splitter);
                     Songs.Add(new Song { Title = dividedContents[0], Album = dividedContents[1], Artist = dividedContents[2], Genre = dividedContents[3], Time = dividedContents[4] });
-                    
+
 
                     fileContents = sr.ReadLine();
                 }
-                
+
             }
             UpdateData();
 
@@ -309,7 +306,7 @@ namespace WPF_ResumeApplication.ViewModel
         //Adds an entry into the Songs list and displays it in the listview
         public void AddEntry()
         {
-            Songs.Add(new Song{ Title = sv.titleTxtBox.Text, Album = sv.albumTxtBox.Text, Artist = sv.artistTxtBox.Text, Genre = sv.genreTxtBox.Text, Time = sv.timeTxtBox.Text });
+            Songs.Add(new Song { Title = sv.titleTxtBox.Text, Album = sv.albumTxtBox.Text, Artist = sv.artistTxtBox.Text, Genre = sv.genreTxtBox.Text, Time = sv.timeTxtBox.Text });
             UpdateData();
         }
 
@@ -317,7 +314,7 @@ namespace WPF_ResumeApplication.ViewModel
         //Deletes the selected entry in the listview         
         public void DeleteEntry()
         {
-            
+
             ICollectionView view = CollectionViewSource.GetDefaultView(Songs);
             var toBeDeleted = sv.songGrid.SelectedItem;
             foreach (Song song in Songs)

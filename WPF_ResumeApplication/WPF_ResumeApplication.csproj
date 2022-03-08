@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\GenericViewModel.cs" />
+    <Compile Include="View\GenericView.xaml.cs">
+      <DependentUpon>GenericView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SongViewModel.cs" />
     <Compile Include="View\SongView.xaml.cs">
@@ -72,6 +76,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\GenericView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SongView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
