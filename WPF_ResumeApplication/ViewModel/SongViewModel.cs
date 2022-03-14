@@ -1,30 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using System.ComponentModel;
-using WPF_ResumeApplication.Model;
 using System.IO;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
+using WPF_ResumeApplication.Model;
+using WPF_ResumeApplication.View;
 
 namespace WPF_ResumeApplication.ViewModel
 {
     class SongViewModel
     {
-        MainWindow w;
+        SongView sv;
 
         private IList<Song> _SongsList;
 
-        public SongViewModel(MainWindow w)
+        public SongViewModel(SongView w)
         {
-            this.w = w;
+            sv = w;
 
             _SongsList = new List<Song>
             {
-                
+
             };
             LoadData();
         }
@@ -112,7 +110,7 @@ namespace WPF_ResumeApplication.ViewModel
             public void Execute(object parameter)
             {
                 songViewModel.LoadData();
-                
+
             }
 
             #endregion
@@ -254,7 +252,7 @@ namespace WPF_ResumeApplication.ViewModel
 
             File.WriteAllText(filename, "");
 
-            foreach (Song song in _SongsList)
+            foreach (Song song in Songs)
             {
                 string songToSave = song.Title + splitter + song.Album + splitter + song.Artist + splitter + song.Genre + splitter + song.Time + splitter;
                 using (StreamWriter sw = File.AppendText(filename))
@@ -263,7 +261,7 @@ namespace WPF_ResumeApplication.ViewModel
                 }
             }
 
-            _SongsList.Clear();
+            Songs.Clear();
 
         }
 
@@ -273,24 +271,24 @@ namespace WPF_ResumeApplication.ViewModel
             char splitter = '|';
             string filename = "SongList.txt";
             string fileContents = "";
-            
+
             if (!File.Exists(filename))
                 MessageBox.Show("The file " + filename + "does not exist.");
 
             using (StreamReader sr = File.OpenText(filename))
             {
                 fileContents = sr.ReadLine();
-                _SongsList.Clear();
+                Songs.Clear();
 
                 while (fileContents != null)
                 {
                     string[] dividedContents = fileContents.Split(splitter);
-                    _SongsList.Add(new Song { Title = dividedContents[0], Album = dividedContents[1], Artist = dividedContents[2], Genre = dividedContents[3], Time = dividedContents[4] });
-                    
+                    Songs.Add(new Song { Title = dividedContents[0], Album = dividedContents[1], Artist = dividedContents[2], Genre = dividedContents[3], Time = dividedContents[4] });
+
 
                     fileContents = sr.ReadLine();
                 }
-                
+
             }
             UpdateData();
 
@@ -300,7 +298,7 @@ namespace WPF_ResumeApplication.ViewModel
         //Update what appears in the list view
         public void UpdateData()
         {
-            ICollectionView view = CollectionViewSource.GetDefaultView(_SongsList);
+            ICollectionView view = CollectionViewSource.GetDefaultView(Songs);
 
             view.Refresh();
         }
@@ -308,7 +306,7 @@ namespace WPF_ResumeApplication.ViewModel
         //Adds an entry into the Songs list and displays it in the listview
         public void AddEntry()
         {
-            _SongsList.Add(new Song{ Title = w.titleTxtBox.Text, Album = w.albumTxtBox.Text, Artist = w.artistTxtBox.Text, Genre = w.genreTxtBox.Text, Time = w.timeTxtBox.Text });
+            Songs.Add(new Song { Title = sv.titleTxtBox.Text, Album = sv.albumTxtBox.Text, Artist = sv.artistTxtBox.Text, Genre = sv.genreTxtBox.Text, Time = sv.timeTxtBox.Text });
             UpdateData();
         }
 
@@ -316,14 +314,17 @@ namespace WPF_ResumeApplication.ViewModel
         //Deletes the selected entry in the listview         
         public void DeleteEntry()
         {
-            ICollectionView view = CollectionViewSource.GetDefaultView(_SongsList);
-            var toBeDeleted = view.CurrentItem;
-            foreach (Song song in _SongsList)
+
+            ICollectionView view = CollectionViewSource.GetDefaultView(Songs);
+            var toBeDeleted = sv.songGrid.SelectedItem;
+            foreach (Song song in Songs)
             {
                 if (toBeDeleted == song)
+                {
                     toBeDeleted = song;
+                }
             }
-            _SongsList.Remove((Song)toBeDeleted);
+            Songs.Remove((Song)toBeDeleted);
             view.Refresh();
         }
     }

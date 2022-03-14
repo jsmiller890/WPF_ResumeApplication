@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using WPF_ResumeApplication.ViewModel;
 
 namespace WPF_ResumeApplication
 {
-    
+
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
@@ -19,8 +13,8 @@ namespace WPF_ResumeApplication
         {
             base.OnStartup(e);
             WPF_ResumeApplication.MainWindow window = new MainWindow();
-            SongViewModel VM = new SongViewModel(window);
-            window.DataContext = VM;
+            MainViewModel mvm = new MainViewModel();
+            window.DataContext = mvm;
             window.Show();
         }
     }
