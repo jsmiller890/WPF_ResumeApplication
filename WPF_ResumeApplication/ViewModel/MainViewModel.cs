@@ -50,7 +50,8 @@ namespace WPF_ResumeApplication.ViewModel
                 {
                     mainViewModel.OpenGenericView();
                 }
-
+                else if ((string)parameter == "Calculator")
+                    mainViewModel.OpenCalculatorView();
 
             }
 
@@ -71,6 +72,12 @@ namespace WPF_ResumeApplication.ViewModel
             GenericViewModel gvm = new GenericViewModel(genericView);
             genericView.DataContext = gvm;
             genericView.ShowDialog();
+        }
+
+        public void OpenCalculatorView()
+        {
+            Calculator calculatorView = new Calculator();
+            calculatorView.ShowDialog();
         }
     }
 }

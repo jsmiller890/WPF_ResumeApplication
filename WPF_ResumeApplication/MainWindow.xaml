@@ -8,6 +8,6 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Content="Song List" HorizontalAlignment="Left" Margin="32,30,0,0" VerticalAlignment="Top" Width="129" Height="86" Command="{Binding OpenNewViewCommand}" CommandParameter="SongList"/>
-        <Button Content="Generic Calculator" HorizontalAlignment="Left" Margin="32,160,0,0" VerticalAlignment="Top" Width="129" Height="86" Command="{Binding OpenNewViewCommand}" CommandParameter="Generic"/>
+        <Button Content="Calculator" HorizontalAlignment="Left" Margin="687,335,0,0" VerticalAlignment="Top" Width="79" Height="62" Command="{Binding OpenNewViewCommand}" CommandParameter="Calculator"/>
     </Grid>
 </Window>
