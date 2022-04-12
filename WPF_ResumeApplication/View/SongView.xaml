@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="SongView" Height="450" Width="800">
     <Grid>
-    <ListView x:Name="songGrid" HorizontalAlignment="Left" Height="274" Margin="45,52,0,0" VerticalAlignment="Top" Width="472" ItemsSource="{Binding Songs}" IsSynchronizedWithCurrentItem="False">
+    <ListView x:Name="songGrid" HorizontalAlignment="Left" Height="274" Margin="41,77,0,0" VerticalAlignment="Top" Width="472" ItemsSource="{Binding Songs}" IsSynchronizedWithCurrentItem="False">
         <ListView.View>
             <GridView x:Name="SongGrid">
                     <GridViewColumn DisplayMemberBinding="{Binding Title}" Width="100">
@@ -44,5 +44,6 @@
     <Button x:Name="updateButton" Content="Update" HorizontalAlignment="Left" Margin="605,374,0,0" VerticalAlignment="Top" Width="75" Command = "{Binding UpdateCommand}"/>
     <Button x:Name="deleteButton" Content="Delete" HorizontalAlignment="Left" Margin="701,332,0,0" VerticalAlignment="Top" Width="75" Command = "{Binding DeleteCommand}"/>
     <Button x:Name="addButton" Content="Add" HorizontalAlignment="Left" Margin="605,332,0,0" VerticalAlignment="Top" Width="75" Command = "{Binding AddCommand}"/>
+        <ComboBox x:Name="comboType" HorizontalAlignment="Left" Margin="68,29,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

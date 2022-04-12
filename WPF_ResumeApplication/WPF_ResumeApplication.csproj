@@ -55,12 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\GenericViewModel.cs" />
+    <Compile Include="ForbiddenIsland\Card.cs" />
+    <Compile Include="ForbiddenIsland\Deck.cs" />
+    <Compile Include="ForbiddenIsland\GameBoard.cs" />
+    <Compile Include="ForbiddenIsland\Player.cs" />
+    <Compile Include="ForbiddenIsland\Tile.cs" />
+    <Compile Include="Model\Movie.cs" />
+    <Compile Include="Model\VideoGame.cs" />
+    <Compile Include="ViewModel\FileIO.cs" />
     <Compile Include="View\Calculator.xaml.cs">
       <DependentUpon>Calculator.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\GenericView.xaml.cs">
-      <DependentUpon>GenericView.xaml</DependentUpon>
+    <Compile Include="View\ForbiddenIsland.xaml.cs">
+      <DependentUpon>ForbiddenIsland.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SongViewModel.cs" />
@@ -83,7 +90,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\GenericView.xaml">
+    <Page Include="View\ForbiddenIsland.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -118,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ForbiddenIsland\TileNames.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ForbiddenIsland\ItemNames.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

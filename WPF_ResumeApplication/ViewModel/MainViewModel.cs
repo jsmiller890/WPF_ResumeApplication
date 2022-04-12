@@ -46,10 +46,6 @@ namespace WPF_ResumeApplication.ViewModel
                 {
                     mainViewModel.OpenSongView();
                 }
-                else if ((string)parameter == "Generic")
-                {
-                    mainViewModel.OpenGenericView();
-                }
                 else if ((string)parameter == "Calculator")
                     mainViewModel.OpenCalculatorView();
 
@@ -64,14 +60,6 @@ namespace WPF_ResumeApplication.ViewModel
             SongViewModel svm = new SongViewModel(songView);
             songView.DataContext = svm;
             songView.ShowDialog();
-        }
-
-        public void OpenGenericView()
-        {
-            GenericView genericView = new GenericView();
-            GenericViewModel gvm = new GenericViewModel(genericView);
-            genericView.DataContext = gvm;
-            genericView.ShowDialog();
         }
 
         public void OpenCalculatorView()

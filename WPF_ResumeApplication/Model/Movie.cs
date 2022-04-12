@@ -1,14 +1,20 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WPF_ResumeApplication.Model
 {
-    class Song : INotifyPropertyChanged
+    class Movie : INotifyPropertyChanged
     {
         private string _title;
-        private string _artist;
-        private string _album;
-        private string _time;
-        private string _genre;
+        private string _length;
+        private int _releaseYear;
+        private string _director;
+        private Hashtable _cast = new Hashtable();
 
         public string Title
         {
@@ -23,55 +29,55 @@ namespace WPF_ResumeApplication.Model
             }
         }
 
-        public string Artist
+        public string Length
         {
             get
             {
-                return _artist;
+                return _length;
             }
             set
             {
-                _artist = value;
-                OnPropertyChanged("Artist");
+                _length = value;
+                OnPropertyChanged("Length");
             }
         }
 
-        public string Album
+        public int ReleaseYear
         {
             get
             {
-                return _album;
+                return _releaseYear;
             }
             set
             {
-                _album = value;
-                OnPropertyChanged("Album");
+                _releaseYear = value;
+                OnPropertyChanged("ReleaseYear");
             }
         }
 
-        public string Time
+        public string Director
         {
             get
             {
-                return _time;
+                return _director;
             }
             set
             {
-                _time = value;
-                OnPropertyChanged("Time");
+                _director = value;
+                OnPropertyChanged("Director");
             }
         }
 
-        public string Genre
+        public Hashtable Cast
         {
             get
             {
-                return _genre;
+                return _cast;
             }
             set
             {
-                _genre = value;
-                OnPropertyChanged("Genre");
+                _cast = value;
+                OnPropertyChanged("Cast");
             }
         }
 
